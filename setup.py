@@ -8,16 +8,17 @@ def read(fname):
 
 def run_setup():
     setup(
-        name='',
+        name='klout-to-graphite',
         version='0.0.1',
-        description='',
-        keywords = '',
+        description='A tool to send Klout scores to Graphite',
+        keywords = 'klout graphite',
         url='',
-        author='',
-        author_email='@',
+        author='Philip Cristiano',
+        author_email='philipcristiano@gmail.com',
         license='',
         packages=[''],
         install_requires=[
+            'Klout==0.1.0',
         ],
         test_suite='tests',
         long_description=read('README.md'),
@@ -26,6 +27,7 @@ def run_setup():
         ],
         entry_points="""
         [console_scripts]
+        klout-to-graphite=klout_to_graphite:main
         """,
     )
 
