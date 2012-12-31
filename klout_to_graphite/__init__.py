@@ -15,6 +15,8 @@ def run(klout_key, graphite_host, graphite_port, names, graphite_prefix):
     sock = _socket_for_host_port(graphite_host, graphite_port)
     for name in names:
         name = name.strip()
+        if not name:
+            continue
         identity = client.identity.klout(screenName=name).get('id')
         score = client.user.score(kloutId=identity).get('score')
         metric = '{}.{} {} {}\n'.format(graphite_prefix, name, score, now)
