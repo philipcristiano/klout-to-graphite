@@ -9,14 +9,14 @@ def read(fname):
 def run_setup():
     setup(
         name='klout-to-graphite',
-        version='0.0.1',
+        version='0.0.3',
         description='A tool to send Klout scores to Graphite',
         keywords = 'klout graphite',
-        url='',
+        url='https://github.com/philipcristiano/klout-to-graphite',
         author='Philip Cristiano',
         author_email='philipcristiano@gmail.com',
-        license='',
-        packages=[''],
+        license='BSD',
+        packages=['klout_to_graphite'],
         install_requires=[
             'Klout==0.1.0',
         ],
