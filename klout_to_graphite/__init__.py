@@ -20,6 +20,7 @@ def run(klout_key, graphite_host, graphite_port, names, graphite_prefix):
         identity = client.identity.klout(screenName=name).get('id')
         score = client.user.score(kloutId=identity).get('score')
         metric = '{}.{} {} {}\n'.format(graphite_prefix, name, score, now)
+        print metric,
         sock.sendall(metric)
     sock.close()
 
@@ -34,7 +35,7 @@ def get_info():
     parser = argparse.ArgumentParser(description='Send Klout scores to Graphite')
     parser.add_argument('--graphite-host', metavar='graphite-host', type=str, nargs=1, default=None, help='Host to send metrics to')
     parser.add_argument('--graphite-port', metavar='graphite-port', type=int, nargs=1, default=2003, help='Graphite port to send metrics to')
-    parser.add_argument('--graphite-prefix', metavar='graphite-prefix', type=str, nargs=1, default='klout', help='Prefix for metrics')
+    parser.add_argument('--graphite-prefix', metavar='graphite-prefix', type=str, nargs=1, default=['klout'], help='Prefix for metrics')
     return parser.parse_args()
 
 
@@ -51,7 +52,7 @@ def main():
         args.graphite_host[0],
         args.graphite_port,
         names,
-        args.graphite_prefix
+        args.graphite_prefix[0],
     )
 
 if __name__ == '__main__':
